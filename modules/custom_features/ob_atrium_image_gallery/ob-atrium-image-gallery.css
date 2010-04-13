@@ -1,0 +1,30 @@
+/* Add the icon to the feature-menu and activity steam */
+#features-menu li a.icon-gallery span.icon {
+  background: url(ob_atrium_gallery-icon.png) no-repeat;
+}
+td.views-field.feature span.feature-ob_atrium_image_gallery {
+  background: url(ob_atrium_gallery-icon.png) no-repeat -20px -40px;
+}
+
+/* Gallery Pages */
+.view-ob-atrium-gallery .views-view-grid tr:hover {
+  background: none;
+}
+.view-ob-atrium-gallery .views-view-grid tr td:hover {
+  background: #ecf4f8;
+}
+.view-ob-atrium-gallery.view-display-id-page_1 .field_gallery_titleimage_vname {
+  float: left;
+}
+.view-ob-atrium-gallery.view-display-id-block_3 .field_imagefile_fid {
+  float: left;
+  margin-right: 10px;
+}
+div.main div.view.view-display-id-page_1 .markup {
+  font-size: 12px;
+}
+
+/*
+view view-ob-atrium-gallery view-id-ob_atrium_gallery view-display-id-page_1 view-dom-id-7
+view view-ob-atrium-gallery view-id-ob_atrium_gallery view-display-id-block_3 view-dom-id-8
+*/

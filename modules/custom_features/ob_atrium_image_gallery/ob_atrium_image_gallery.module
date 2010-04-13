@@ -1,0 +1,22 @@
+<?php
+
+include_once('ob_atrium_image_gallery.features.inc');
+
+/**
+ * Implementation of hook_init().
+ */
+function ob_atrium_image_gallery_init() {
+  drupal_add_css(drupal_get_path('module', 'ob_atrium_image_gallery') .'/ob-atrium-image-gallery.css');
+}
+
+/**
+* Implementation of hook_strongarm().
+*/
+function ob_atrium_image_gallery_strongarm() {
+  $conf = array (
+    'atrium_update_type_gallery' => 1,
+    'xref_links_gallery' => '0',
+    'xref_view_gallery' => 0,
+  );
+  return $conf;
+}
