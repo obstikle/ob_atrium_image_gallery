@@ -19,6 +19,15 @@ function ob_atrium_image_gallery_context_default_contexts() {
 }
 
 /**
+ * Implementation of hook_ctools_plugin_api().
+ */
+function ob_atrium_image_gallery_ctools_plugin_api() {
+  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_ob_atrium_image_gallery_ctools_plugin_api', $args);
+}
+
+/**
  * Implementation of hook_imagecache_default_presets().
  */
 function ob_atrium_image_gallery_imagecache_default_presets() {

@@ -278,14 +278,14 @@ function _ob_atrium_image_gallery_content_default_fields() {
     'multiple' => '0',
     'module' => 'filefield',
     'active' => '1',
-    'list_field' => '0',
+    'list_field' => '1',
     'list_default' => 1,
     'description_field' => '0',
     'widget' => array(
       'file_extensions' => 'png gif jpg jpeg',
       'file_path' => 'images/[site-date-yyyy]-[site-date-mon]',
       'progress_indicator' => 'bar',
-      'max_filesize_per_file' => '',
+      'max_filesize_per_file' => '8MB',
       'max_filesize_per_node' => '',
       'max_resolution' => '0',
       'min_resolution' => '0',
@@ -318,61 +318,94 @@ function _ob_atrium_image_gallery_content_default_fields() {
  * Helper to implementation of hook_context_default_contexts().
  */
 function _ob_atrium_image_gallery_context_default_contexts() {
-  $items = array();
-
-  $items[] = array(
-    'namespace' => 'spaces',
-    'attribute' => 'feature',
-    'value' => 'ob_atrium_gallery',
-    'description' => '',
+  $export = array();
+  $context = new stdClass;
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'spaces-feature-ob_atrium_gallery';
+  $context->description = '';
+  $context->tag = '';
+  $context->conditions = array(
     'node' => array(
-      '0' => 'gallery',
-      '1' => 'image',
+      'values' => array(
+        '0' => 'gallery',
+        '1' => 'image',
+      ),
+      'options' => array(),
     ),
     'views' => array(
-      '0' => 'ob_atrium_gallery',
+      'values' => array(
+        '0' => 'ob_atrium_gallery',
+      ),
+      'options' => array(),
     ),
+  );
+  $context->reactions = array(
     'menu' => 'gallery',
     'block' => array(
-      'views_ob_atrium_gallery-block_1' => array(
-        'module' => 'views',
-        'delta' => 'ob_atrium_gallery-block_1',
-        'weight' => 35,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'Parent Gallery',
-        'type' => 'context_ui',
-      ),
-      'views_ob_atrium_gallery-block_2' => array(
-        'module' => 'views',
-        'delta' => 'ob_atrium_gallery-block_2',
-        'weight' => 36,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'Sub-Galleries',
-        'type' => 'context_ui',
-      ),
-      'views_ob_atrium_gallery-block_3' => array(
-        'module' => 'views',
-        'delta' => 'ob_atrium_gallery-block_3',
-        'weight' => 37,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'Gallery Comments',
-        'type' => 'context_ui',
-      ),
-      'views_ob_atrium_gallery-block_4' => array(
-        'module' => 'views',
-        'delta' => 'ob_atrium_gallery-block_4',
-        'weight' => 38,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'Gallery Image Browser',
-        'type' => 'context_ui',
+      'blocks' => array(
+        'views-ob_atrium_gallery-block_1' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_gallery-block_1',
+          'weight' => 35,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'Parent Gallery',
+          'type' => 'context_ui',
+        ),
+        'views-ob_atrium_gallery-block_2' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_gallery-block_2',
+          'weight' => 36,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'Sub-Galleries',
+          'type' => 'context_ui',
+        ),
+        'views-ob_atrium_gallery-block_3' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_gallery-block_3',
+          'weight' => 37,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'Gallery Comments',
+          'type' => 'context_ui',
+        ),
+        'views-ob_atrium_gallery-block_4' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_gallery-block_4',
+          'weight' => 38,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'Gallery Image Browser',
+          'type' => 'context_ui',
+        ),
       ),
     ),
   );
-  return $items;
+  $context->condition_mode = 0;
+
+  $translatables['spaces-feature-ob_atrium_gallery'] = array(
+
+  );
+
+  $export['spaces-feature-ob_atrium_gallery'] = $context;
+  return $export;
+}
+
+/**
+ * Helper to implementation of hook_ctools_plugin_api().
+ */
+function _ob_atrium_image_gallery_ctools_plugin_api() {
+  $args = func_get_args();
+  $module = array_shift($args);
+  $api = array_shift($args);
+  if ($module == "context" && $api == "context") {
+    return array("version" => 3);
+  }
+  else if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => 1);
+  }
 }
 
 /**
@@ -482,7 +515,9 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'create gallery content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'manager',
+      '1' => 'all',
+      '2' => 'half manager',
+      '3' => 'manager',
     ),
   );
 
@@ -491,8 +526,10 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'create image content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'manager',
+      '1' => 'all',
+      '2' => 'authenticated user',
+      '3' => 'half manager',
+      '4' => 'manager',
     ),
   );
 
@@ -501,8 +538,10 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'delete own gallery content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'manager',
+      '1' => 'all',
+      '2' => 'authenticated user',
+      '3' => 'half manager',
+      '4' => 'manager',
     ),
   );
 
@@ -511,8 +550,10 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'delete own image content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'manager',
+      '1' => 'all',
+      '2' => 'authenticated user',
+      '3' => 'half manager',
+      '4' => 'manager',
     ),
   );
 
@@ -521,8 +562,10 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'edit own gallery content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'manager',
+      '1' => 'all',
+      '2' => 'authenticated user',
+      '3' => 'half manager',
+      '4' => 'manager',
     ),
   );
 
@@ -531,8 +574,10 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     'name' => 'edit own image content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'manager',
+      '1' => 'all',
+      '2' => 'authenticated user',
+      '3' => 'half manager',
+      '4' => 'manager',
     ),
   );
 
