@@ -222,11 +222,11 @@ function _ob_atrium_image_gallery_content_default_fields() {
         'format' => 'hidden',
       ),
       'teaser' => array(
-        'format' => 'ob_gallery-thumbnail_default',
+        'format' => 'ob_atrium_image_gallery-thumbnail_default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'ob_gallery-nodeview_imagelink',
+        'format' => 'ob_atrium_image_gallery-nodeview_linked',
         'exclude' => 0,
       ),
       '4' => array(
@@ -297,8 +297,41 @@ function _ob_atrium_image_gallery_context_default_contexts() {
         'node_form' => 1,
       ),
     ),
+    'views' => array(
+      'values' => array(
+        'ob_atrium_image_gallery' => 'ob_atrium_image_gallery',
+      ),
+    ),
   );
   $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-ob_atrium_image_gallery-block_1' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_image_gallery-block_1',
+          'region' => 'right',
+          'weight' => 0,
+        ),
+        'views-ob_atrium_image_gallery-block_2' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_image_gallery-block_2',
+          'region' => 'right',
+          'weight' => 1,
+        ),
+        'views-ob_atrium_image_gallery-block_4' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_image_gallery-block_4',
+          'region' => 'right',
+          'weight' => 2,
+        ),
+        'views-ob_atrium_image_gallery-block_3' => array(
+          'module' => 'views',
+          'delta' => 'ob_atrium_image_gallery-block_3',
+          'region' => 'right',
+          'weight' => 3,
+        ),
+      ),
+    ),
     'menu' => 'gallery',
   );
   $context->condition_mode = 0;
@@ -392,46 +425,6 @@ function _ob_atrium_image_gallery_imagecache_default_presets() {
           'data' => array(
             'width' => '80',
             'height' => '80',
-          ),
-        ),
-      ),
-    ),
-    'ob_gallery-nodeview' => array(
-      'presetname' => 'ob_gallery-nodeview',
-      'actions' => array(
-        '0' => array(
-          'weight' => '0',
-          'module' => 'imagecache',
-          'action' => 'imagecache_scale',
-          'data' => array(
-            'width' => '600',
-            'height' => '',
-            'upscale' => 0,
-          ),
-        ),
-      ),
-    ),
-    'ob_gallery-thumbnail' => array(
-      'presetname' => 'ob_gallery-thumbnail',
-      'actions' => array(
-        '0' => array(
-          'weight' => '0',
-          'module' => 'imagecache',
-          'action' => 'imagecache_crop',
-          'data' => array(
-            'width' => '80%',
-            'height' => '80%',
-            'xoffset' => 'center',
-            'yoffset' => 'center',
-          ),
-        ),
-        '1' => array(
-          'weight' => '0',
-          'module' => 'imagecache',
-          'action' => 'imagecache_scale_and_crop',
-          'data' => array(
-            'width' => '150',
-            'height' => '150',
           ),
         ),
       ),
@@ -564,5 +557,52 @@ function _ob_atrium_image_gallery_strongarm() {
   );
 
   $export['content_extra_weights_gallery'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_gallery';
+  $strongarm->value = array(
+    '0' => 'status',
+    '1' => 'promote',
+  );
+
+  $export['node_options_gallery'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_image';
+  $strongarm->value = array(
+    '0' => 'status',
+  );
+
+  $export['node_options_image'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'og_content_type_usage_gallery';
+  $strongarm->value = 'group_post_standard';
+
+  $export['og_content_type_usage_gallery'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'og_content_type_usage_image';
+  $strongarm->value = 'group_post_standard';
+
+  $export['og_content_type_usage_image'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xref_view_gallery';
+  $strongarm->value = 0;
+
+  $export['xref_view_gallery'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xref_view_image';
+  $strongarm->value = 0;
+
+  $export['xref_view_image'] = $strongarm;
   return $export;
 }

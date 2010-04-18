@@ -11,7 +11,7 @@ function ob_atrium_image_gallery_init() {
 
 /**
 * Implementation of hook_strongarm().
-*/
+*
 function ob_atrium_image_gallery_strongarm() {
   $conf = array (
     'atrium_update_type_gallery' => 1,
@@ -20,3 +20,5 @@ function ob_atrium_image_gallery_strongarm() {
   );
   return $conf;
 }
+
+*/
