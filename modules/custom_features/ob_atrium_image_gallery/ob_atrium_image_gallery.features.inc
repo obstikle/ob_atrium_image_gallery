@@ -64,6 +64,15 @@ function ob_atrium_image_gallery_user_default_permissions() {
 }
 
 /**
+ * Implementation of hook_strongarm().
+ */
+function ob_atrium_image_gallery_strongarm() {
+  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_ob_atrium_image_gallery_strongarm', $args);
+}
+
+/**
  * Implementation of hook_views_default_views().
  */
 function ob_atrium_image_gallery_views_default_views() {

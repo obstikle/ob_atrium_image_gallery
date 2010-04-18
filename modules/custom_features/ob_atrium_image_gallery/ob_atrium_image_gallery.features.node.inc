@@ -8,7 +8,7 @@ function _ob_atrium_image_gallery_node_info() {
     'gallery' => array(
       'name' => t('Gallery'),
       'module' => 'features',
-      'description' => t('A gallery that imgae and other gallery nodes can reference.'),
+      'description' => t('A gallery that image and other gallery nodes can reference.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'has_body' => '1',
