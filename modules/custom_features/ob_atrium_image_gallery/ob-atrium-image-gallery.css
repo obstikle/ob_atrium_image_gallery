@@ -28,3 +28,24 @@ div.main div.view.view-display-id-page_1 .markup {
 view view-ob-atrium-gallery view-id-ob_atrium_gallery view-display-id-page_1 view-dom-id-7
 view view-ob-atrium-gallery view-id-ob_atrium_gallery view-display-id-block_3 view-dom-id-8
 */
+
+/* in dev styles */
+/** Parent Gallery block */
+#block-views-ob_atrium_image_gallery-block_1 .view-ob-atrium-image-gallery.view-id-ob_atrium_image_gallery .views-field.related-title {
+  font-size: 1.2em;
+}
+
+#block-views-ob_atrium_image_gallery-block_1 .view-ob-atrium-image-gallery.view-id-ob_atrium_image_gallery .views-field.field_imagefile_fid {
+  float: left;
+  margin-right: 9px;
+}
+
+/** Comments block **/
+#block-views-ob_atrium_image_gallery-block_3 .view-ob-atrium-image-gallery.view-id-ob_atrium_image_gallery.view-display-id-block_3 .grouping-content .grouped-content .views-field.field_imagefile_fid {
+  float: right;
+  margin-top: 70px;
+  margin-right: -100px;
+}
+#block-views-ob_atrium_image_gallery-block_3 .view-ob-atrium-image-gallery.view-id-ob_atrium_image_gallery.view-display-id-block_3 .grouping-content .grouped-content .views-field.markup {
+  margin-right: 110px;
+}

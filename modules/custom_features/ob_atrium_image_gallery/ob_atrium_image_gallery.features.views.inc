@@ -294,6 +294,47 @@ function _ob_atrium_image_gallery_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
+    'field_imagefile_fid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'ob_atrium_image_gallery-thumbnail-sml_default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_imagefile_fid',
+      'table' => 'node_data_field_imagefile',
+      'field' => 'field_imagefile_fid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
     'title' => array(
       'label' => '',
       'alter' => array(
@@ -350,47 +391,6 @@ function _ob_atrium_image_gallery_views_default_views() {
         'button' => 'Use default',
       ),
       'relationship' => 'field_galleryreference_nid',
-    ),
-    'field_imagefile_fid' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'ob_atrium_image_gallery-thumbnail-sml_default',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_imagefile_fid',
-      'table' => 'node_data_field_imagefile',
-      'field' => 'field_imagefile_fid',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-      'relationship' => 'none',
     ),
   ));
   $handler->override_option('arguments', array(
@@ -841,36 +841,6 @@ return $value;',
       ),
       'relationship' => 'none',
     ),
-    'timestamp' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'strip_tags' => 0,
-        'html' => 0,
-      ),
-      'date_format' => 'small',
-      'custom_date_format' => '',
-      'exclude' => 0,
-      'id' => 'timestamp',
-      'table' => 'comments',
-      'field' => 'timestamp',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-      'relationship' => 'none',
-    ),
     'field_imagefile_fid' => array(
       'label' => '',
       'alter' => array(
@@ -912,7 +882,7 @@ return $value;',
         'button' => 'Use default',
       ),
     ),
-    'comment' => array(
+    'timestamp' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => 0,
@@ -931,10 +901,12 @@ return $value;',
         'strip_tags' => 0,
         'html' => 0,
       ),
+      'date_format' => 'small',
+      'custom_date_format' => '',
       'exclude' => 0,
-      'id' => 'comment',
+      'id' => 'timestamp',
       'table' => 'comments',
-      'field' => 'comment',
+      'field' => 'timestamp',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -968,6 +940,34 @@ return $value;',
         'button' => 'Use default',
       ),
       'relationship' => 'nid',
+    ),
+    'comment' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 0,
+        'html' => 0,
+      ),
+      'exclude' => 0,
+      'id' => 'comment',
+      'table' => 'comments',
+      'field' => 'comment',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('sorts', array(
@@ -1102,6 +1102,7 @@ return $value;',
   $handler->override_option('block_description', 'Gallery Comments');
   $handler->override_option('block_caching', -1);
   $handler = $view->new_display('block', 'Image Browser Block', 'block_4');
+  $handler->override_option('relationships', array());
   $handler->override_option('fields', array(
     'field_imagefile_fid' => array(
       'label' => '',
@@ -1139,7 +1140,7 @@ return $value;',
       'id' => 'field_imagefile_fid',
       'table' => 'node_data_field_imagefile',
       'field' => 'field_imagefile_fid',
-      'relationship' => 'field_imagereference_nid',
+      'relationship' => 'none',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -1209,6 +1210,55 @@ if ($node->type != "gallery") {
       ),
     ),
   ));
+  $handler->override_option('filters', array(
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'image' => 'image',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+    'current' => array(
+      'operator' => 'all',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'current',
+      'table' => 'spaces',
+      'field' => 'current',
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('title', 'Gallery Images');
   $handler->override_option('use_ajax', TRUE);
   $handler->override_option('items_per_page', 12);
@@ -1275,8 +1325,8 @@ if ($node->type != "gallery") {
     'field_imagefile_fid' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
+        'alter_text' => 1,
+        'text' => '<a href="node/[nid]">[field_imagefile_fid]</a>',
         'make_link' => 0,
         'path' => '',
         'link_class' => '',
@@ -1297,7 +1347,7 @@ if ($node->type != "gallery") {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'ob_gallery-thumbnail_default',
+      'format' => 'ob_atrium_image_gallery-thumbnail_default',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
