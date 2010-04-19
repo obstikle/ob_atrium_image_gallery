@@ -1139,7 +1139,7 @@ return $value;',
       'id' => 'field_imagefile_fid',
       'table' => 'node_data_field_imagefile',
       'field' => 'field_imagefile_fid',
-      'relationship' => 'none',
+      'relationship' => 'field_imagereference_nid',
       'override' => array(
         'button' => 'Use default',
       ),

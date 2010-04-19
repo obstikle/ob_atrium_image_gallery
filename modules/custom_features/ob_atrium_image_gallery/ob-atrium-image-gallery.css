@@ -2,7 +2,7 @@
 #features-menu li a.icon-gallery span.icon {
   background: url(ob_atrium_gallery-icon.png) no-repeat;
 }
-td.views-field.feature span.feature-ob_atrium_image_gallery {
+span.spaces-feature.feature-ob_atrium_image_gallery {
   background: url(ob_atrium_gallery-icon.png) no-repeat -20px -40px;
 }
 

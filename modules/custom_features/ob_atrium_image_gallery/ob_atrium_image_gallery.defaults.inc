@@ -563,7 +563,6 @@ function _ob_atrium_image_gallery_strongarm() {
   $strongarm->name = 'node_options_gallery';
   $strongarm->value = array(
     '0' => 'status',
-    '1' => 'promote',
   );
 
   $export['node_options_gallery'] = $strongarm;

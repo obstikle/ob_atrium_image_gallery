@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implementation of hook_enable().
+ * Copied from pingv feature! 
+ */
+function ob_atrium_image_gallery_enable() {
+  // For the time being, backreference field settings are not exportable.
+  // So, simply hard-coding the entries for now.
+  $count = db_result(db_query("SELECT count(*) FROM {backreference_field_symmetry} WHERE field_left = 'field_galleryreference'"));
+  if ($count == 0) {
+    db_query("INSERT INTO {backreference_field_symmetry} VALUES ('field_galleryreference', 'field_imagereference')");
+  }
+
+  $count = db_result(db_query("SELECT count(*) FROM {backreference_field_symmetry} WHERE field_left = 'field_imagereference'"));
+  if ($count == 0) {
+    db_query("INSERT INTO {backreference_field_symmetry} VALUES ('field_imagereference', 'field_galleryreference')");
+  }
+}
