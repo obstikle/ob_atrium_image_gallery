@@ -484,6 +484,18 @@ function _ob_atrium_image_gallery_user_default_permissions() {
     ),
   );
 
+  // Exported permission: delete any gallery content
+  $permissions[] = array(
+    'name' => 'delete any gallery content',
+    'roles' => array(),
+  );
+
+  // Exported permission: delete any image content
+  $permissions[] = array(
+    'name' => 'delete any image content',
+    'roles' => array(),
+  );
+
   // Exported permission: delete own gallery content
   $permissions[] = array(
     'name' => 'delete own gallery content',
@@ -529,6 +541,33 @@ function _ob_atrium_image_gallery_user_default_permissions() {
       '2' => 'authenticated user',
       '3' => 'half manager',
       '4' => 'manager',
+    ),
+  );
+
+  // Exported permission: view imagecache ob_atrium_image_gallery-nodeview
+  $permissions[] = array(
+    'name' => 'view imagecache ob_atrium_image_gallery-nodeview',
+    'roles' => array(
+      '0' => 'authenticated user',
+      '1' => 'manager',
+    ),
+  );
+
+  // Exported permission: view imagecache ob_atrium_image_gallery-thumbnail
+  $permissions[] = array(
+    'name' => 'view imagecache ob_atrium_image_gallery-thumbnail',
+    'roles' => array(
+      '0' => 'authenticated user',
+      '1' => 'manager',
+    ),
+  );
+
+  // Exported permission: view imagecache ob_atrium_image_gallery-thumbnail-sml
+  $permissions[] = array(
+    'name' => 'view imagecache ob_atrium_image_gallery-thumbnail-sml',
+    'roles' => array(
+      '0' => 'authenticated user',
+      '1' => 'manager',
     ),
   );
 
