@@ -226,7 +226,7 @@ function ob_atrium_image_gallery_content_default_fields() {
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'ob_atrium_image_gallery-nodeview_linked',
+        'format' => 'ob_atrium_image_gallery-nodeview_imagelink',
         'exclude' => 0,
       ),
       '4' => array(
