@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Helper to implementation of hook_views_default_views().
+ * Implementation of hook_views_default_views().
  */
-function _ob_atrium_image_gallery_views_default_views() {
+function ob_atrium_image_gallery_views_default_views() {
   $views = array();
 
   // Exported view: ob_atrium_image_gallery

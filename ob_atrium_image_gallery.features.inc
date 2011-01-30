@@ -1,82 +1,128 @@
 <?php
 
 /**
- * Implementation of hook_content_default_fields().
- */
-function ob_atrium_image_gallery_content_default_fields() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_content_default_fields', $args);
-}
-
-/**
- * Implementation of hook_context_default_contexts().
- */
-function ob_atrium_image_gallery_context_default_contexts() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_context_default_contexts', $args);
-}
-
-/**
  * Implementation of hook_ctools_plugin_api().
  */
 function ob_atrium_image_gallery_ctools_plugin_api() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_ctools_plugin_api', $args);
+  list($module, $api) = func_get_args();
+  if ($module == "context" && $api == "context") {
+    return array("version" => 3);
+  }
+  elseif ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => 1);
+  }
 }
 
 /**
  * Implementation of hook_imagecache_default_presets().
  */
 function ob_atrium_image_gallery_imagecache_default_presets() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_imagecache_default_presets', $args);
-}
-
-/**
- * Implementation of hook_menu_default_items().
- */
-function ob_atrium_image_gallery_menu_default_items() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_menu_default_items', $args);
+  $items = array(
+    'ob_atrium_image_gallery-nodeview' => array(
+      'presetname' => 'ob_atrium_image_gallery-nodeview',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale',
+          'data' => array(
+            'width' => '600',
+            'height' => '',
+            'upscale' => 0,
+          ),
+        ),
+      ),
+    ),
+    'ob_atrium_image_gallery-thumbnail' => array(
+      'presetname' => 'ob_atrium_image_gallery-thumbnail',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_crop',
+          'data' => array(
+            'width' => '80%',
+            'height' => '80%',
+            'xoffset' => 'center',
+            'yoffset' => 'center',
+          ),
+        ),
+        '1' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale_and_crop',
+          'data' => array(
+            'width' => '150',
+            'height' => '150',
+          ),
+        ),
+      ),
+    ),
+    'ob_atrium_image_gallery-thumbnail-sml' => array(
+      'presetname' => 'ob_atrium_image_gallery-thumbnail-sml',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_crop',
+          'data' => array(
+            'width' => '75%',
+            'height' => '75%',
+            'xoffset' => 'center',
+            'yoffset' => 'center',
+          ),
+        ),
+        '1' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale_and_crop',
+          'data' => array(
+            'width' => '80',
+            'height' => '80',
+          ),
+        ),
+      ),
+    ),
+  );
+  return $items;
 }
 
 /**
  * Implementation of hook_node_info().
  */
 function ob_atrium_image_gallery_node_info() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.features.node');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_node_info', $args);
+  $items = array(
+    'gallery' => array(
+      'name' => t('Gallery'),
+      'module' => 'features',
+      'description' => t('A gallery that image and other gallery nodes can reference.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'has_body' => '1',
+      'body_label' => t('Body'),
+      'min_word_count' => '0',
+      'help' => '',
+    ),
+    'image' => array(
+      'name' => t('Image'),
+      'module' => 'features',
+      'description' => t('For uploading images. Image nodes can reference a gallery.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'has_body' => '1',
+      'body_label' => t('Body'),
+      'min_word_count' => '0',
+      'help' => '',
+    ),
+  );
+  return $items;
 }
 
 /**
- * Implementation of hook_user_default_permissions().
+ * Implementation of hook_views_api().
  */
-function ob_atrium_image_gallery_user_default_permissions() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_user_default_permissions', $args);
-}
-
-/**
- * Implementation of hook_strongarm().
- */
-function ob_atrium_image_gallery_strongarm() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.defaults');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_strongarm', $args);
-}
-
-/**
- * Implementation of hook_views_default_views().
- */
-function ob_atrium_image_gallery_views_default_views() {
-  module_load_include('inc', 'ob_atrium_image_gallery', 'ob_atrium_image_gallery.features.views');
-  $args = func_get_args();
-  return call_user_func_array('_ob_atrium_image_gallery_views_default_views', $args);
+function ob_atrium_image_gallery_views_api() {
+  return array(
+    'api' => '2',
+  );
 }
