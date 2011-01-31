@@ -10,6 +10,40 @@ function ob_atrium_image_gallery_init() {
 }
 
 /**
+ * Implements hook_help().
+ */
+function ob_atrium_image_gallery_help($path, $arg){
+  // Central help page content.
+  if ($path == 'admin/help#ob_atrium_image_gallery') {
+    $help = '<h3>'. t('ob Atrium Image Gallery') .'</h3>';
+    $help .= '<p>'. t("This image gallery feature lets your team post images, which can be organised into galleries.") .'</p>';
+    $help .= '<p>'. t("To create a gallery, navigate to the galleries page and click the __Add Gallery__ button.  Then click __Save__.") .'</p>';
+    $help .= '<p>'. t("To post an image, navigate to the galleries page and click the __Add Image__ button.  Optionally choose a gallery to post the image into, then click __Save__.") .'</p>';
+    $help .= '<p>'. t("Images without a gallery reference will show up in an orphans gallery") .'</p>';
+    return $help;
+  }
+
+  // Contextual help content.
+  if (context_isset('context', 'spaces-feature-ob_atrium_image_gallery')) {
+    switch ($path) {
+      case 'node/add/gallery':
+        $help = '';
+        $help .= '<h3>'. t('Gallery') .'</h3>';
+        return $help;
+      case 'node/add/image':
+        $help = '';
+        $help .= '<h3>'. t('Image') .'</h3>';
+        return $help;
+      default:
+        $help = '';
+        $help .= '<h3>'. t('Image Galleries') .'</h3>';
+        $help .= '<p>'. t('') .'</p>';
+        return $help;
+    }
+  }
+}
+ 
+/**
 * Implementation of hook_strongarm().
 *
 function ob_atrium_image_gallery_strongarm() {
