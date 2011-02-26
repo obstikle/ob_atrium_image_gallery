@@ -268,7 +268,7 @@ function ob_atrium_image_gallery_views_default_views() {
       'relationship' => 'field_imagereference_nid',
     ),
   ));
-  $handler->override_option('items_per_page', 12);
+  $handler->override_option('items_per_page', 20);
   $handler->override_option('use_pager', '1');
   $handler->override_option('types', array(
     'gallery' => 'gallery',
