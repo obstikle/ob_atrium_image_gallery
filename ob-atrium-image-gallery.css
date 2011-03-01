@@ -6,7 +6,7 @@ span.spaces-feature.feature-ob_atrium_image_gallery {
   background: url(ob_atrium_gallery-icon.png) no-repeat -20px -40px;
 }
 
-/* Gallery Pages */
+/** Gallery Pages **/
 .view-ob-atrium-gallery .views-view-grid tr:hover {
   background: none;
 }
@@ -22,6 +22,28 @@ span.spaces-feature.feature-ob_atrium_image_gallery {
 }
 div.main div.view.view-display-id-page_1 .markup {
   font-size: 12px;
+}
+/* Theme add links to be more obvious */
+div.node-gallery div.node-links ul.links li.gallery_field_galleryreference a,
+div.node-gallery div.node-links ul.links li.image_field_galleryreference a {
+  color: #666;
+  background: #eee;
+  border: 1px solid #ccc;
+
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  
+  -moz-box-shadow: 0 1px 1px #ddd;
+  -webkit-box-shadow: 0 1px 1px #ddd;
+  box-shadow: 0 1px 1px #ddd;
+  
+  margin-left: 10px;
+}
+div.node-gallery div.node-links ul.links li.gallery_field_galleryreference a:hover,
+div.node-gallery div.node-links ul.links li.image_field_galleryreference a:hover {
+  color: #eee;
+  background: #888;
+  border-color: #999;
 }
 
 /*
